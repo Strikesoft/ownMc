@@ -1,0 +1,28 @@
+{
+  "name": "ownMc",
+  "version": "1.0.0",
+  "description": "Your own media center",
+  "main": " ",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Strikesoft/ownMc.git"
+  },
+  "keywords": [
+    "mediacenter"
+  ],
+  "author": "Strikesoft",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Strikesoft/ownMc/issues"
+  },
+  "homepage": "https://github.com/Strikesoft/ownMc",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-jscs": "^2.3.0",
+    "load-grunt-tasks": "^3.3.0"
+  }
+}
