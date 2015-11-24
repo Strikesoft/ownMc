@@ -35,3 +35,9 @@
 
 # Composer PHAR
 /composer.phar
+
+#IDE folders
+.idea/
+
+#Node
+node_modules/
