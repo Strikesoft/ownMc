@@ -1,3 +1,10 @@
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /user/
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
 front:
     resource: "@FrontBundle/Resources/config/routing.yml"
     prefix:   /
