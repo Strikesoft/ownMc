@@ -5,16 +5,37 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}ownMc - Your own media center {% endblock %}</title>
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-
+        <nav class="navbar navbar-fixed-top navbar-dark bg-primary-front-page">
+            <a class="navbar-brand" href="#">ownMc</a>
+            <ul class="nav navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Medias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+        <footer class="footer bg-primary-front-page">
+            <div id="footerContainer" class="container">
+                <p class="text-muted">© 2015 - ownMc all rights reserved.</p>
+            </div>
+        </footer>
         <script src="{{ asset('js/libs/jquery.min.js') }}"></script>
         <script src="{{ asset('js/libs/bootstrap.min.js') }}"></script>
         {% block javascripts %}{% endblock %}
