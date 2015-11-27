@@ -37,8 +37,6 @@
   "requireSpacesInNamedFunctionExpression": { "beforeOpeningCurlyBrace": true },
   "requireSpacesInsideObjectBrackets": "allButNested",
   "validateAlignedFunctionParameters": true,
-  "validateIndentation": 2,
-  "validateLineBreaks": "LF",
   "validateNewlineAfterArrayElements": true,
   "validateQuoteMarks": "'"
 }

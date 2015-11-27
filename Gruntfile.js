@@ -15,29 +15,31 @@ module.exports = function (grunt) {
             options: {
                 configFile: '.eslintrc'
             },
-            target: 'web/js/*.js'
+            target: 'web/js/src/*.js'
         },
         jscs: {
             options: {
                 config: '.jscsrc'
             },
             core: {
-                src: 'web/js/*.js'
+                src: 'web/js/src/*.js'
             }
         },
         babel: {
-            dev: {
-                options: {
-                    sourceMap: true,
-                    modules: 'ignore'
-                },
-                files: {}
+            options: {
+                sourceMap: true,
+                presets: ['es2015']
+            },
+            dist: {
+                files: {
+                    'web/js/dist/login.js' : 'web/js/src/login.js'
+                }
             }
         },
         watch: {
             src: {
                 files: '<%= jscs.core.src %>',
-                tasks: ['babel:dev']
+                tasks: ['babel:dist']
             }
         }
     });
@@ -48,5 +50,5 @@ module.exports = function (grunt) {
     // Default task.
     grunt.registerTask('default', ['test']);
 
-    grunt.registerTask('test', ['eslint', 'jscs:core']);
+    grunt.registerTask('test', ['eslint', 'jscs:core', 'babel:dist']);
 };

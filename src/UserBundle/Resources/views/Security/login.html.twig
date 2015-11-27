@@ -1,0 +1,54 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div class="row">
+        {% if error %}
+            <div class="alert alert-error" role="alert">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+
+        <div class="card center-block" style="width: 500px;">
+            <div class="card-block">
+                <form id="loginForm" action="{{ path("fos_user_security_check") }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                    <div id="formGpUsername" class="form-group row">
+                        <label for="username" class="col-sm-3 form-control-label">Login</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" />
+                        </div>
+                    </div>
+
+                    <div id="formGpPassword" class="form-group row">
+                        <label for="password" class="col-sm-3 form-control-label">Mot de passe</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="password" name="_password" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3"></label>
+                        <div class="col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"> Se souvenir de moi
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-3"></label>
+                        <div class="col-sm-9">
+                            <button type="submit" id="btnSubmit" name="_submit" class="btn btn-primary">Connexion</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+{% block javascripts %}
+    <script src="{{ asset('js/dist/login.js') }}"></script>
+{% endblock %}
