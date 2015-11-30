@@ -21,17 +21,23 @@ code {
     font-size: 80%;
 }
 
+.alert-error > p {
+    text-align: center;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
     position: relative;
     min-height: 100%;
 }
+
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
     background-color: #f5f8fa;
 }
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -39,10 +45,15 @@ body {
     /* Set the fixed height of the footer here */
     height: 60px;
 }
+
 #footerContainer {
     line-height: 1;
 }
 
 .bg-primary-front-page {
     background-color: #3097D1;
+}
+
+#spanConnected {
+    color: #ffffff;
 }
