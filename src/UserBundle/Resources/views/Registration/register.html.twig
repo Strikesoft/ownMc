@@ -1,0 +1,44 @@
+{% extends "::base.html.twig" %}
+{% block title %}Inscription - ownMc{% endblock %}
+{% block body %}
+    <div class="row">
+        <h3>Inscription</h3>
+        <div class="card center-block" style="width: 650px;">
+            <div class="card-block">
+                <form id="registrationForm" action="{{ path("user_registration") }}">
+                    <div id="formGpUsername" class="form-group row">
+                        <label for="username" class="col-sm-3 form-control-label">Login</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="username" name="_username"/>
+                        </div>
+                    </div>
+
+                    <div id="formGpEmail" class="form-group row">
+                        <label for="email" class="col-sm-3 form-control-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="email" name="email"/>
+                        </div>
+                    </div>
+
+                    <div id="formGpPassword" class="form-group row">
+                        <label for="password" class="col-sm-3 form-control-label">Mot de passe</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="password" name="_password" />
+                            <input type="password2" class="form-control" style="margin-top: 5px;" id="password2" name="_password2" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="btnSubmit" class="col-sm-3"></label>
+                        <div class="col-sm-9">
+                            <button type="submit" id="btnSubmit" name="_submit" class="btn btn-primary">Inscription</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+{% block javascripts %}
+    <script src="{{ asset('js/dist/register.js') }}"></script>
+{% endblock %}
