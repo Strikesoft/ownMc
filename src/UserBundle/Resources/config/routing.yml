@@ -1,3 +1,3 @@
 user_registration:
     path:     /register/
-    defaults: { _controller: UserBundle:Register:index }
+    defaults: { _controller: UserBundle:Registration:register }

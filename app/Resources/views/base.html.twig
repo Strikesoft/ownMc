@@ -16,18 +16,23 @@
     <body>
         <nav class="navbar navbar-fixed-top navbar-dark bg-primary-front-page">
             <a class="navbar-brand" href="#">ownMc</a>
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav col-sm-5">
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ path('front_homepage') }}">
-                        Home <span class="sr-only">(current)</span>
+                        Accueil <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Medias</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="#">A propos</a>
                 </li>
+                {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('user_registration') }}">Inscription</a>
+                </li>
+                {% endif %}
             </ul>
             <ul class="nav navbar-nav pull-right">
                 <li class="nav-item">
