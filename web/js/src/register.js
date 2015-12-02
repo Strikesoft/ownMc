@@ -9,6 +9,7 @@ class Registration {
     clickSubmit(e) {
         e.preventDefault();
         this._removeError();
+        $('#registerAlertError').hide();
         let tabErr = this._validForm();
         if (tabErr.length === 0) {
             this._sendRequest();
@@ -43,21 +44,39 @@ class Registration {
 
     _sendRequest() {
         let formData = this._getFormData();
+        let that = this;
+        $('#btnSubmit').addClass('disabled');
+        $('.own-loader').show();
         $.ajax({
             type: 'POST',
             url: $('#registrationForm').attr('action'),
             data: formData,
-            success: () => {
-
-            },
-            error: () => {
-
-            }
+            success: that._registerSuccess,
+            error: that._registerError
         });
+    }
+
+    _registerSuccess(response) {
+        $('.own-loader').hide();
+        if (response.result) {
+            $('#cardForm').remove();
+            $('#registerAlertSuccess').show();
+        }
+        else {
+            $('#btnSubmit').removeClass('disabled');
+            $('#registerAlertError').show();
+        }
+    }
+
+    _registerError() {
+        $('.own-loader').hide();
+        $('#btnSubmit').removeClass('disabled');
+        $('#registerAlertError').show();
     }
 
     _getFormData() {
         return {
+            type: 'registration',
             login: $('#username').val(),
             email: $('#email').val(),
             password: $('#password').val()

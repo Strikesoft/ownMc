@@ -21,8 +21,13 @@ code {
     font-size: 80%;
 }
 
-.alert-error > p {
+.alert-danger > p, .alert-success > p {
     text-align: center;
+}
+
+.own-loader {
+    font-size: 19px;
+    color: #3097D1;
 }
 
 /* Sticky footer styles

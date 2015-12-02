@@ -3,8 +3,8 @@
 {% block body %}
     <div class="row">
         {% if error %}
-            <div class="alert alert-error" role="alert">
-                <p>{{ error }}</p>
+            <div class="alert alert-danger center-block" role="alert"  style="width: 500px;">
+                <p><i class="fa fa-warning"></i> Une erreur est survenue ou votre demande d'inscription n'a pas été validé.</p>
             </div>
         {% endif %}
 

@@ -19,6 +19,7 @@ var Registration = (function () {
         value: function clickSubmit(e) {
             e.preventDefault();
             this._removeError();
+            $('#registerAlertError').hide();
             var tabErr = this._validForm();
             if (tabErr.length === 0) {
                 this._sendRequest();
@@ -56,18 +57,41 @@ var Registration = (function () {
         key: '_sendRequest',
         value: function _sendRequest() {
             var formData = this._getFormData();
+            var that = this;
+            $('#btnSubmit').addClass('disabled');
+            $('.own-loader').show();
             $.ajax({
                 type: 'POST',
                 url: $('#registrationForm').attr('action'),
                 data: formData,
-                success: function success() {},
-                error: function error() {}
+                success: that._registerSuccess,
+                error: that._registerError
             });
+        }
+    }, {
+        key: '_registerSuccess',
+        value: function _registerSuccess(response) {
+            $('.own-loader').hide();
+            if (response.result) {
+                $('#cardForm').remove();
+                $('#registerAlertSuccess').show();
+            } else {
+                $('#btnSubmit').removeClass('disabled');
+                $('#registerAlertError').show();
+            }
+        }
+    }, {
+        key: '_registerError',
+        value: function _registerError() {
+            $('.own-loader').hide();
+            $('#btnSubmit').removeClass('disabled');
+            $('#registerAlertError').show();
         }
     }, {
         key: '_getFormData',
         value: function _getFormData() {
             return {
+                type: 'registration',
                 login: $('#username').val(),
                 email: $('#email').val(),
                 password: $('#password').val()
