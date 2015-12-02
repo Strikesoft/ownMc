@@ -27,10 +27,16 @@ class RegistrationController extends BaseController
         $response->headers->set('Content-Type', 'application/json');
         $data = $request->request->all();
         $result = array();
+        $userManager = $this->container->get('fos_user.user_manager');
 
         if ($data['type'] === 'registration') {
-            $userManager = $this->container->get('fos_user.user_manager');
             $result = $this->getDoctrine()->getManager()->getRepository('UserBundle:User')->registerUser($data, $userManager);
+        }
+
+        if ($data['type'] === 'checkUsername') {
+            $result = array(
+                'isExist' => $userManager->findUserByUsername($data['username']) !== null ? true : false
+            );
         }
 
         $response->setContent(json_encode($result));

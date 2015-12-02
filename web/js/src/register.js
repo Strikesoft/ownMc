@@ -4,11 +4,13 @@ class Registration {
     constructor() {
         let that = this;
         $('#btnSubmit').on('click', (event) => { that.clickSubmit(event); });
+        $('#username').on('blur', that.checkUsername);
     }
 
     clickSubmit(e) {
         e.preventDefault();
         this._removeError();
+        this.checkUsername();
         $('#registerAlertError').hide();
         let tabErr = this._validForm();
         if (tabErr.length === 0) {
@@ -17,6 +19,36 @@ class Registration {
         else {
             this._addError(tabErr);
         }
+    }
+
+    checkUsername() {
+        let userName = $('#username').val();
+        if (userName.length === 0) {
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: $('#registrationForm').attr('action'),
+            data: {
+                type: 'checkUsername',
+                username: userName
+            },
+            success: (response) => {
+                if (!response.isExist) {
+                    $('#username').addClass('form-control-success')
+                                  .removeClass('form-control-danger');
+                    $('#formGpUsername').addClass('has-success')
+                                        .removeClass('has-danger');
+                }
+                else {
+                    $('#username').addClass('form-control-danger')
+                                  .removeClass('form-control-success');
+                    $('#formGpUsername').addClass('has-danger')
+                                        .removeClass('has-success');
+                }
+            }
+        });
     }
 
     // Private
@@ -91,6 +123,9 @@ class Registration {
 
     _removeError() {
         $('.form-group.has-danger').removeClass('has-danger');
+        $('.form-group.has-success').removeClass('has-success');
+        $('input .form-control-danger').removeClass('form-control-danger');
+        $('input .form-control-success').removeClass('form-control-success');
     }
 }
 
