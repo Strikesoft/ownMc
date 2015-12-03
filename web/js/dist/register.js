@@ -13,6 +13,7 @@ var Registration = (function () {
             that.clickSubmit(event);
         });
         $('#username').on('blur', that.checkUsername);
+        $('#password').on('keyup', that.checkPasswordStrength);
     }
 
     _createClass(Registration, [{
@@ -54,6 +55,35 @@ var Registration = (function () {
                     }
                 }
             });
+        }
+    }, {
+        key: 'checkPasswordStrength',
+        value: function checkPasswordStrength() {
+            var passWord = $('#password').val();
+            var strengthPourcent = 0;
+            var addPourcentComplete = 100 / 3;
+            if (passWord.length >= 5) {
+                strengthPourcent += addPourcentComplete;
+            }
+
+            if (passWord !== passWord.toLowerCase()) {
+                strengthPourcent += addPourcentComplete;
+            }
+
+            // Find special chars
+            var regexSpecialChars = '!@#$%^&*()+=-[]\';,./{}|":<>?~_';
+            var hasSpecialChar = false;
+            for (var i = 0; i < passWord.length; i++) {
+                if (regexSpecialChars.indexOf(passWord[i]) !== -1) {
+                    hasSpecialChar = true;
+                    break;
+                }
+            }
+
+            if (hasSpecialChar) {
+                strengthPourcent += addPourcentComplete;
+            }
+            $('#passStrengthProgress').attr('value', strengthPourcent);
         }
 
         // Private
@@ -130,6 +160,7 @@ var Registration = (function () {
         value: function _addError(tabError) {
             $(tabError).each(function (i) {
                 $(tabError[i]).addClass('has-danger');
+                $(tabError[i]).find('input').addClass('form-control-danger');
             });
         }
     }, {

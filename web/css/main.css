@@ -30,6 +30,11 @@ code {
     color: #3097D1;
 }
 
+#passStrengthProgress {
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
