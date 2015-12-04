@@ -35,6 +35,10 @@ code {
     margin-bottom: 2px;
 }
 
+#btnRefreshCaptcha {
+    margin-left: 10px;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

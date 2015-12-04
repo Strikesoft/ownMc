@@ -16,31 +16,43 @@
             <div class="card-block">
                 <form id="registrationForm" action="{{ path("user_registration") }}">
                     <div id="formGpUsername" class="form-group row">
-                        <label for="username" class="col-sm-3 form-control-label">Login</label>
-                        <div class="col-sm-9">
+                        <label for="username" class="col-sm-4 form-control-label">Login</label>
+                        <div class="col-sm-8">
                             <input type="text" class="form-control" id="username" name="_username"/>
                         </div>
                     </div>
 
                     <div id="formGpEmail" class="form-group row">
-                        <label for="email" class="col-sm-3 form-control-label">Email</label>
-                        <div class="col-sm-9">
+                        <label for="email" class="col-sm-4 form-control-label">Email</label>
+                        <div class="col-sm-8">
                             <input type="email" class="form-control" id="email" name="email"/>
                         </div>
                     </div>
 
                     <div id="formGpPassword" class="form-group row">
-                        <label for="password" class="col-sm-3 form-control-label">Mot de passe</label>
-                        <div class="col-sm-9">
+                        <label for="password" class="col-sm-4 form-control-label">Mot de passe</label>
+                        <div class="col-sm-8">
                             <input type="password" class="form-control" id="password" name="_password" />
                             <progress id="passStrengthProgress" class="progress progress-success progress-striped progress-animated" value="0" max="100">0%</progress>
                             <input type="password" class="form-control" style="margin-top: 5px;" id="password2" name="_password2" />
                         </div>
                     </div>
 
+                    <div id="formGpCaptcha" class="form-group row">
+                        <label for="password" class="col-sm-4 form-control-label">
+                            Calculez : <span id="firstNumberCaptcha"></span> <span id="opCaptcha"></span> <span id="secondNumberCaptcha"></span>
+                            <button id="btnRefreshCaptcha" type="button" class="btn btn-primary-outline btn-sm">
+                                <i class="fa fa-refresh"></i>
+                            </button>
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="inputCaptcha" />
+                        </div>
+                    </div>
+
                     <div class="form-group row">
-                        <label for="btnSubmit" class="col-sm-3"></label>
-                        <div class="col-sm-9">
+                        <label for="btnSubmit" class="col-sm-4"></label>
+                        <div class="col-sm-8">
                             <button type="submit" id="btnSubmit" name="_submit" class="btn btn-primary">Inscription</button>
                             <i class="fa fa-spinner fa-spin own-loader" style="display: none;"></i>
                         </div>
