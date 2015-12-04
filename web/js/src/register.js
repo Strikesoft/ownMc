@@ -6,6 +6,14 @@ class Registration {
         $('#btnSubmit').on('click', (event) => { that.clickSubmit(event); });
         $('#username').on('blur', that.checkUsername);
         $('#password').on('keyup', that.checkPasswordStrength);
+        $('#btnRefreshCaptcha').on('click', () => { that.generateCaptcha(); });
+
+        // Captcha
+        this.tabOpCaptcha = ['+', '-', 'x'];
+        this.fNumCaptcha = '';
+        this.sNumCaptcha = '';
+        this.selectedOpCaptcha = '';
+        this.generateCaptcha();
     }
 
     clickSubmit(e) {
@@ -80,6 +88,27 @@ class Registration {
         $('#passStrengthProgress').attr('value', strengthPourcent);
     }
 
+    generateCaptcha() {
+        let tmpIndex = Math.floor((Math.random() * 3) + 1);
+        tmpIndex--;
+        this.selectedOpCaptcha = this.tabOpCaptcha[tmpIndex];
+        this.fNumCaptcha = Math.floor((Math.random() * 10) + 1);
+        this.sNumCaptcha = Math.floor((Math.random() * 10) + 1);
+        if (this.selectedOpCaptcha === '-') {
+            // If the first number is lower than the second one we switch the numbers
+            if (this.fNumCaptcha < this.sNumCaptcha) {
+                let tmp = this.fNumCaptcha;
+                this.fNumCaptcha = this.sNumCaptcha;
+                this.sNumCaptcha = tmp;
+            }
+        }
+
+        // Update spans
+        $('#firstNumberCaptcha').html(this.fNumCaptcha);
+        $('#opCaptcha').html(this.selectedOpCaptcha);
+        $('#secondNumberCaptcha').html(this.sNumCaptcha);
+    }
+
     // Private
     _validForm() {
         let username = $('#username').val();
@@ -91,7 +120,6 @@ class Registration {
             tabErr.push('#formGpUsername');
         }
 
-        // TODO: force length of password and add indication about the strengh
         if (password.length === 0 || password !== password2) {
             tabErr.push('#formGpPassword');
         }
@@ -100,7 +128,41 @@ class Registration {
         if (email.length === 0 || !regexMail.test(email)) {
             tabErr.push('#formGpEmail');
         }
+
+        if (!this._checkCaptchaResult()) {
+            tabErr.push('#formGpCaptcha');
+        }
         return tabErr;
+    }
+
+    _checkCaptchaResult() {
+        let userResult = $('#inputCaptcha').val();
+        if (userResult.length === 0) {
+            return false;
+        }
+
+        userResult = parseInt(userResult, 10);
+        if (isNaN(userResult)) {
+            return false;
+        }
+
+        let result = 0;
+        switch (this.selectedOpCaptcha) {
+            case '+':
+                result = this.fNumCaptcha + this.sNumCaptcha;
+                break;
+            case '-':
+                result = this.fNumCaptcha - this.sNumCaptcha;
+                break;
+            case 'x':
+                result = this.fNumCaptcha * this.sNumCaptcha;
+                break;
+            default:
+                result = this.fNumCaptcha + this.sNumCaptcha;
+                break;
+        }
+
+        return result === userResult;
     }
 
     _sendRequest() {
