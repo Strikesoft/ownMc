@@ -1,8 +1,9 @@
 
-.card-title {
-    margin-top: 10px;
-}
-
 .admin-card {
     margin-right: 10px;
+}
+
+#tablePendings {
+    margin-left: auto;
+    margin-right: auto;
 }

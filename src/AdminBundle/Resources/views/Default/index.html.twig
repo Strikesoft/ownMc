@@ -6,12 +6,17 @@
 {% block body %}
     <div class="row">
         <h4 style="margin-bottom: 40px;">Administration</h4>
-        <div class="card admin-card col-lg-5">
+        <div class="card card-block admin-card col-lg-5">
             <h4 class="card-title">Utilisateurs</h4>
             <div class="card-block">
+                <div class="list-group">
+                    <a href="{{ path('admin_registration') }}" class="list-group-item">
+                        Inscriptions en attente
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="card admin-card col-lg-5">
+        <div class="card card-block admin-card col-lg-5">
             <h4 class="card-title">Medias</h4>
             <div class="card-block">
             </div>

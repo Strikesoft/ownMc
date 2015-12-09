@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}Inscriptions en attente - ownMc{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <h4 style="margin-bottom: 40px;">Inscriptions en attente</h4>
+        <div class="card card-block admin-card">
+            <div class="card-block">
+                <table id="tablePendings" class="table table-bordered table-striped" style="width: 500px;">
+                    <thead>
+                        <tr>
+                            <th>Utilisateur(s)</th>
+                            <th>Date d'inscription</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in tabPendings %}
+                            <tr>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.dateRegister|date('d-m-Y', 'Europe/Paris') }}</td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
