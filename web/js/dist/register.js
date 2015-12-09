@@ -6,16 +6,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Registration = (function () {
     function Registration() {
+        var _this = this;
+
         _classCallCheck(this, Registration);
 
-        var that = this;
         $('#btnSubmit').on('click', function (event) {
-            that.clickSubmit(event);
+            _this.clickSubmit(event);
         });
-        $('#username').on('blur', that.checkUsername);
-        $('#password').on('keyup', that.checkPasswordStrength);
+        $('#username').on('blur', this.checkUsername);
+        $('#password').on('keyup', this.checkPasswordStrength);
         $('#btnRefreshCaptcha').on('click', function () {
-            that.generateCaptcha();
+            _this.generateCaptcha();
         });
 
         // Captcha
@@ -181,15 +182,14 @@ var Registration = (function () {
         key: '_sendRequest',
         value: function _sendRequest() {
             var formData = this._getFormData();
-            var that = this;
             $('#btnSubmit').addClass('disabled');
             $('.own-loader').show();
             $.ajax({
                 type: 'POST',
                 url: $('#registrationForm').attr('action'),
                 data: formData,
-                success: that._registerSuccess,
-                error: that._registerError
+                success: this._registerSuccess,
+                error: this._registerError
             });
         }
     }, {

@@ -1,3 +1,7 @@
 admin_homepage:
     path:     /
     defaults: { _controller: AdminBundle:Admin:index }
+
+admin_registration:
+    path:     /registration/
+    defaults: { _controller: AdminBundle:PendingRegistration:registration }

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block title %}Inscriptions en attente - ownMc{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <h4 style="margin-bottom: 40px;">Inscriptions en attente</h4>
+        <div class="card card-block admin-card">
+            <div class="card-block">
+                <div id="successMsg" class="alert alert-success" style="display: none;" role="alert">
+                    <p>
+                        <strong>Bien joué !</strong> Toutes les inscriptions ont été traitées
+                    </p>
+                </div>
+                <table id="tablePendings" class="table table-bordered table-striped" style="width: 700px;">
+                    <thead>
+                        <tr>
+                            <th>Utilisateur(s)</th>
+                            <th>Email</th>
+                            <th>Date d'inscription</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in tabPendings %}
+                            <tr id="trUser{{ user.id }}">
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.dateRegister|date('d-m-Y', 'Europe/Paris') }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success btn-sm btnAccept" data-user="{{ user.id }}">
+                                        <i class="fa fa-check"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm btnRefuse" data-user="{{ user.id }}">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/dist/adminRegistration.js') }}"></script>
+{% endblock %}
