@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}Administration - ownMc{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <h4 style="margin-bottom: 40px;">Administration</h4>
+        <div class="card admin-card col-lg-5">
+            <h4 class="card-title">Utilisateurs</h4>
+            <div class="card-block">
+            </div>
+        </div>
+        <div class="card admin-card col-lg-5">
+            <h4 class="card-title">Medias</h4>
+            <div class="card-block">
+            </div>
+        </div>
+    </div>
+{% endblock %}
