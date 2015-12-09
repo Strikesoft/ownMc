@@ -33,7 +33,8 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     'web/js/dist/login.js' : 'web/js/src/login.js',
-                    'web/js/dist/register.js' : 'web/js/src/register.js'
+                    'web/js/dist/register.js' : 'web/js/src/register.js',
+                    'web/js/dist/adminRegistration.js' : 'web/js/src/adminRegistration.js'
                 }
             }
         },

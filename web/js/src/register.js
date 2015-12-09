@@ -2,11 +2,10 @@
 
 class Registration {
     constructor() {
-        let that = this;
-        $('#btnSubmit').on('click', (event) => { that.clickSubmit(event); });
-        $('#username').on('blur', that.checkUsername);
-        $('#password').on('keyup', that.checkPasswordStrength);
-        $('#btnRefreshCaptcha').on('click', () => { that.generateCaptcha(); });
+        $('#btnSubmit').on('click', (event) => { this.clickSubmit(event); });
+        $('#username').on('blur', this.checkUsername);
+        $('#password').on('keyup', this.checkPasswordStrength);
+        $('#btnRefreshCaptcha').on('click', () => { this.generateCaptcha(); });
 
         // Captcha
         this.tabOpCaptcha = ['+', '-', 'x'];
@@ -167,15 +166,14 @@ class Registration {
 
     _sendRequest() {
         let formData = this._getFormData();
-        let that = this;
         $('#btnSubmit').addClass('disabled');
         $('.own-loader').show();
         $.ajax({
             type: 'POST',
             url: $('#registrationForm').attr('action'),
             data: formData,
-            success: that._registerSuccess,
-            error: that._registerError
+            success: this._registerSuccess,
+            error: this._registerError
         });
     }
 

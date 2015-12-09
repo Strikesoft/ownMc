@@ -4,4 +4,4 @@ admin_homepage:
 
 admin_registration:
     path:     /registration/
-    defaults: { _controller: AdminBundle:Admin:registration }
+    defaults: { _controller: AdminBundle:PendingRegistration:registration }

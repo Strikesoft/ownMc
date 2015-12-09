@@ -36,6 +36,39 @@ class UserRepository extends EntityRepository
         return $qb->getResult();
     }
 
+    public function acceptRegistration($userManager, $idUser)
+    {
+        $idUser = intval($idUser);
+        if ($idUser === 0) {
+            throw new \Exception('Not a valid user');
+        }
+        $user = $userManager->findUserBy(array('id' => $idUser));
+        if ($user === null) {
+            throw new \Exception('Cannot find the user');
+        }
+        /**
+         * @var \UserBundle\Entity\User $user
+         */
+        $user->setEnabled(true);
+        $userManager->updateUser($user);
+        return true;
+    }
+
+    public function refuseRegistration($userManager, $idUser)
+    {
+        $idUser = intval($idUser);
+        if ($idUser === 0) {
+            throw new \Exception('Not a valid user');
+        }
+        $user = $userManager->findUserBy(array('id' => $idUser));
+        if ($user === null) {
+            throw new \Exception('Cannot find the user');
+        }
+
+        $userManager->deleteUser($user);
+        return true;
+    }
+
     private function checkRegistrationData($data, $userManager) {
         if (!isset($data['login']) || empty($data['login'])) {
             throw new \Exception('No login key');
