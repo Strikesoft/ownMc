@@ -22,7 +22,7 @@ module.exports = function (grunt) {
                 config: '.jscsrc'
             },
             core: {
-                target: 'src/js/*.js'
+                src: 'src/js/*.js'
             }
         },
         babel: {
