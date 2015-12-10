@@ -15,14 +15,14 @@ module.exports = function (grunt) {
             options: {
                 configFile: '.eslintrc'
             },
-            target: 'web/js/src/*.js'
+            target: 'src/js/*.js'
         },
         jscs: {
             options: {
                 config: '.jscsrc'
             },
             core: {
-                src: 'web/js/src/*.js'
+                target: 'src/js/*.js'
             }
         },
         babel: {
@@ -32,15 +32,15 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'web/js/dist/login.js' : 'web/js/src/login.js',
-                    'web/js/dist/register.js' : 'web/js/src/register.js',
-                    'web/js/dist/adminRegistration.js' : 'web/js/src/adminRegistration.js'
+                    'web/js/dist/login.js' : 'src/js/login.js',
+                    'web/js/dist/register.js' : 'src/js/register.js',
+                    'web/js/dist/adminRegistration.js' : 'src/js/adminRegistration.js'
                 }
             }
         },
         watch: {
             src: {
-                files: '<%= jscs.core.src %>',
+                files: '<%= eslint.target %>',
                 tasks: ['babel:dist']
             }
         }
