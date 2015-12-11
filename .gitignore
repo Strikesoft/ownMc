@@ -41,3 +41,6 @@
 
 #Node
 node_modules/
+
+#Sass
+.sass-cache/

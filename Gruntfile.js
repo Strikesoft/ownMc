@@ -40,10 +40,29 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        sass: {
+            options: {
+                sourcemap: 'none',
+                style: 'expanded'
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/scss/',
+                    src: ['*.scss'],
+                    dest: 'web/css/',
+                    ext: '.css'
+                }]
+            }
+        },
         watch: {
-            src: {
+            js: {
                 files: '<%= eslint.target %>',
                 tasks: ['babel:dist']
+            },
+            css: {
+                files: 'src/scss/*.scss',
+                tasks: ['sass:dist']
             }
         }
     });
@@ -54,5 +73,6 @@ module.exports = function (grunt) {
     // Default task.
     grunt.registerTask('default', ['test']);
 
-    grunt.registerTask('test', ['eslint', 'jscs:core', 'babel:dist']);
+    grunt.registerTask('test', ['test-js']);
+    grunt.registerTask('test-js', ['eslint', 'jscs:core', 'babel:dist']);
 };
