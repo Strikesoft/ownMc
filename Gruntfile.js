@@ -22,7 +22,7 @@ module.exports = function (grunt) {
                 config: '.jscsrc'
             },
             core: {
-                src: 'src/js/*.js'
+                src: '<%= eslint.target %>'
             }
         },
         babel: {
@@ -31,11 +31,13 @@ module.exports = function (grunt) {
                 presets: ['es2015']
             },
             dist: {
-                files: {
-                    'web/js/dist/login.js' : 'src/js/login.js',
-                    'web/js/dist/register.js' : 'src/js/register.js',
-                    'web/js/dist/adminRegistration.js' : 'src/js/adminRegistration.js'
-                }
+                files: [{
+                    expand: true,
+                    cwd: 'src/js/',
+                    src: ['*.js'],
+                    dest: 'web/js/dist/',
+                    ext: '.js'
+                }]
             }
         },
         watch: {
