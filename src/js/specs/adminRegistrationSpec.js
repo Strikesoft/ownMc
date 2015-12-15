@@ -22,7 +22,7 @@ describe('adminRegistration.js', function () {
     });
 
     afterAll(function () {
-        $('#tablePendings').remove();
+        $('#tablePendings, #successMsg').remove();
         admin = null;
     });
 

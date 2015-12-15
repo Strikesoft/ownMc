@@ -28,7 +28,8 @@ module.exports = function (grunt) {
         jasmine: {
             src : 'web/js/dist/*.js',
             options: {
-                specs : 'src/js/specs/*.js',
+                specs: 'src/js/specs/*.js',
+                keepRunner: true,
                 vendor: [
                     'web/js/libs/jquery.min.js',
                     'web/js/libs/tether.min.js',
