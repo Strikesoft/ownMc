@@ -25,6 +25,17 @@ module.exports = function (grunt) {
                 src: '<%= eslint.target %>'
             }
         },
+        jasmine: {
+            src : 'web/js/dist/*.js',
+            options: {
+                specs : 'src/js/specs/*.js',
+                vendor: [
+                    'web/js/libs/jquery.min.js',
+                    'web/js/libs/tether.min.js',
+                    'web/js/libs/bootstrap.min.js'
+                ]
+            }
+        },
         babel: {
             options: {
                 sourceMap: true,
@@ -74,5 +85,5 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['test']);
 
     grunt.registerTask('test', ['test-js']);
-    grunt.registerTask('test-js', ['eslint', 'jscs:core', 'babel:dist']);
+    grunt.registerTask('test-js', ['eslint', 'jscs:core', 'babel:dist', 'jasmine']);
 };
