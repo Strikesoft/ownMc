@@ -1,0 +1,7 @@
+media_homepage:
+    path:     /
+    defaults: { _controller: MediaBundle:Index:index }
+
+media_folders:
+    path:     /folders/
+    defaults: { _controller: MediaBundle:Folders:index }
