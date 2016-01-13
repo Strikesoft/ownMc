@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new FrontBundle\FrontBundle(),
             new UserBundle\UserBundle(),
             new AdminBundle\AdminBundle(),
+            new MediaBundle\MediaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

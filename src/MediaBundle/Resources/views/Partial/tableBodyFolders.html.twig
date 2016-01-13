@@ -1,0 +1,16 @@
+{% for folder in tabFolder %}
+    <tr id="tr{{ folder.id }}">
+        <td>{{ folder.name }}</td>
+        <td>{{ folder.displayExtensions() }}</td>
+        <td>{{ folder.path }}</td>
+        <td>{{ folder.displayLastCheck('d-M-Y') }}</td>
+        <td>
+            <button class="btn btnEditFolder" data-folder="{{ folder.id }}">
+                <i class="fa fa-pencil"></i>
+            </button>
+            <button class="btn btn-warning btnRemoveFolder" data-folder="{{ folder.id }}">
+                <i class="fa fa-trash"></i>
+            </button>
+        </td>
+    </tr>
+{% endfor %}

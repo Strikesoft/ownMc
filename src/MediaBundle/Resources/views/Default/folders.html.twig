@@ -1,0 +1,172 @@
+{% extends 'base.html.twig' %}
+{% block title %}Folders - ownMc{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/libs/chosen.min.css') }}">
+{% endblock %}
+{% block body %}
+<div class="row">
+    <ul class="list-unstyled list-inline pull-right">
+        <li>
+            <button class="btn" data-toggle="modal" data-target="#addFolderModal">
+                <i class="fa fa-plus"></i> Ajouter
+            </button>
+        </li>
+    </ul>
+    <table id="tableFolder" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <td>Nom</td>
+                <td>Extensions</td>
+                <td>Chemin</td>
+                <td>Dernière vérification</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+        {{ include('MediaBundle:Partial:tableBodyFolders.html.twig', { 'tabFolder': tabFolder }) }}
+        </tbody>
+    </table>
+</div>
+
+<!-- Add folder modal -->
+<div id="addFolderModal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Ajouter un dossier</h4>
+            </div>
+            <div class="modal-body">
+                <form class="center-block" style="width: 445px;">
+                    <div id="alertResult" class="alert" role="alert" style="display: none;">
+                        <p></p>
+                    </div>
+                    <div id="formGrpFolderName" class="form-group row">
+                        <label for="folderName" class="col-sm-3 form-control-label">Nom</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="folderName" />
+                        </div>
+                    </div>
+                    <div id="formGrpFolderPath" class="form-group row">
+                        <label for="folderPath" class="col-sm-3 form-control-label">Chemin</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="folderPath" />
+                        </div>
+                    </div>
+                    <div id="formGrpFolderExt" class="form-group row">
+                        <label for="selectExt" class="col-sm-3 form-control-label">Extensions</label>
+                        <div class="col-sm-9">
+                            <select id="selectExt" multiple class="chosen-select">
+                                <option value="mp4">MP4</option>
+                                <option value="avi">AVI</option>
+                                <option value="wmv">WMV</option>
+                                <option value="flv">FLV</option>
+                                <option value="mkv">MKV</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div id="loaderAddFolder" class="pull-left" style="display: none;">
+                    <i class="fa fa-refresh own-loader fa-spin"></i>
+                </div>
+                <button id="btnCloseAddModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btnAddFolder" type="button" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit folder modal -->
+<div id="editFolderModal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Editer un dossier</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formEditFolder" class="center-block" style="width: 445px;">
+                    <div id="alertEditResult" class="alert" role="alert" style="display: none;">
+                        <p></p>
+                    </div>
+                    <div id="alertEditDisplay" class="alert alert-warning" role="alert" style="display: none;">
+                        <p>Impossible to get this folder</p>
+                    </div>
+                    <div id="formGrpEditFolderName" class="form-group row">
+                        <label for="editFolderName" class="col-sm-3 form-control-label">Nom</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="editFolderName" />
+                        </div>
+                    </div>
+                    <div id="formGrpEditFolderPath" class="form-group row">
+                        <label for="editFolderPath" class="col-sm-3 form-control-label">Chemin</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="editFolderPath" />
+                        </div>
+                    </div>
+                    <div id="formGrpEditFolderExt" class="form-group row">
+                        <label for="editSelectExt" class="col-sm-3 form-control-label">Extensions</label>
+                        <div class="col-sm-9">
+                            <select id="editSelectExt" multiple class="chosen-select">
+                                <option value="mp4">MP4</option>
+                                <option value="avi">AVI</option>
+                                <option value="wmv">WMV</option>
+                                <option value="flv">FLV</option>
+                                <option value="mkv">MKV</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <input type="hidden" id="inputEditFolder" />
+            </div>
+            <div class="modal-footer">
+                <div id="loaderEditFolder" class="pull-left" style="display: none;">
+                    <i class="fa fa-refresh own-loader fa-spin"></i>
+                </div>
+                <button id="btnCloseEditModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btnEditFolder" type="button" class="btn btn-primary">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Remover folder modal -->
+<div id="removeFolderModal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Supprimer un dossier</h4>
+            </div>
+            <div class="modal-body">
+                <div id="alertErrorRemoveFolder" class="alert alert-danger" style="display: none;">
+                    <p>Une erreur est survenue</p>
+                </div>
+                <div class="alert alert-warning">
+                    <p>Etes-vous sur de vouloir supprimer ce dossier ?</p>
+                </div>
+                <input type="hidden" id="inputRemoveFolder" />
+            </div>
+            <div class="modal-footer">
+                <div id="loaderRemoveFolder" class="pull-left" style="display: none;">
+                    <i class="fa fa-refresh own-loader fa-spin"></i>
+                </div>
+                <button id="btnCloseRemoveModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btnRemoveFolder" type="button" class="btn btn-primary">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/libs/chosen.min.js') }}"></script>
+    <script src="{{ asset('js/dist/folders.js') }}"></script>
+{% endblock %}

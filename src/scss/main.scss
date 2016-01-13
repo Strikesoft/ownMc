@@ -6,21 +6,23 @@ body > .container {
   margin: 20px 0;
 }
 
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-.footer > .container > p {
-  text-align: center;
-  color: #ffffff;
-}
-
 code {
   font-size: 80%;
 }
 
-.alert-danger > p, .alert-success > p {
+table {
+  thead {
+    tr {
+      td {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.alert-danger > p,
+.alert-success > p,
+.alert-warning > p {
   text-align: center;
 }
 

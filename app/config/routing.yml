@@ -1,3 +1,7 @@
+media:
+    resource: "@MediaBundle/Resources/config/routing.yml"
+    prefix:   /media/
+
 admin:
     resource: "@AdminBundle/Resources/config/routing.yml"
     prefix:   /admin/

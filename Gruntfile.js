@@ -33,7 +33,8 @@ module.exports = function (grunt) {
                 vendor: [
                     'web/js/libs/jquery.min.js',
                     'web/js/libs/tether.min.js',
-                    'web/js/libs/bootstrap.min.js'
+                    'web/js/libs/bootstrap.min.js',
+                    'web/js/libs/chosen.min.js'
                 ]
             }
         },
