@@ -1,0 +1,12 @@
+default:
+  suites:
+    default:
+        contexts:
+            - FeatureContext:
+                session:   '@session'
+  extensions:
+    Behat\Symfony2Extension: ~
+    Behat\MinkExtension:
+      sessions:
+        default:
+          symfony2: ~
