@@ -12,3 +12,4 @@ Your own media center
 ## Contributors
 - [xfroelicher](https://github.com/xfroelicher)
 - [guillaumesoul](https://github.com/guillaumesoul)
+- [NicolasBRERO](https://github.com/NicolasBRERO)
